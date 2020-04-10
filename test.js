@@ -61,5 +61,69 @@ console.log(l) ;
 let i = [new Set(x)] ;
 console.log(i) ;
 
-let j = ...new Set(x) ;
-console.log(j) ;
+/* let j = ...new Set(x) ;
+console.log(j) ; */
+
+// pass an external argument to a callback func
+function oneTagInKeywords (keywords) {
+  return function(element) {
+    console.log(element);
+    console.log(keywords);
+    console.log(keywords.includes(element));
+    return keywords.includes(element);
+  }
+}
+
+const es6OneTagInKeywords = (keywords) => {
+  return (element) => keywords.includes(element);
+}
+
+
+let keywords = ['java', 'javascript', 'lockdown']
+let tags1 = ['java', 'javascript', 'lockdown']
+let tags2 = ['java', 'tourism', 'folk dance']
+let tags3 = ['python', 'fintech', 'blockchain']
+let tag1 = 'javascript'
+let tag2 = 'me'
+
+/* console.log(tags1.some(oneTagInKeywords(keywords)))
+console.log(tags2.some(oneTagInKeywords(keywords)))
+console.log(tags3.some(oneTagInKeywords(keywords)))
+
+console.log(tags1.some(es6OneTagInKeywords(keywords)))
+console.log(tags2.some(es6OneTagInKeywords(keywords)))
+console.log(tags3.some(es6OneTagInKeywords(keywords))) */
+
+let myString = 'elle avait une bague à chaque doigt'
+let myPartial ='elle'
+// like in ruby, in js, sometimes 
+// a string is considered an array
+console.log(myString.includes(myPartial))
+
+console.log('new starts here')
+const categories = [
+	{
+		"keywords": ["Javascript", "Promises", "React", "Vue JS", "Angular", "ES6"]
+	},
+	{
+		"keywords": ["Lecture", "Livres", "Conseils librairie", "Bibliothèque"]
+	},
+	{
+		"keywords": ["Javascript", "Switch", "Game Boy", "Nintendo", "PS4", "Gaming", "DOOM", "Animal Crossing"]
+	},
+	{
+		"keywords": ["Streaming", "Netflix", "Twitch", "Influenceur", "Film"]
+	}
+];
+
+const es6WordContainsPartial = (partial) => {
+  return (element) => element.toLowerCase().includes(partial);
+}
+
+let result = categories
+            .find((x) => (
+              x.keywords
+              .find(es6WordContainsPartial('jav'))
+            )).keywords;
+
+console.log(result);

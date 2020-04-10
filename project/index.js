@@ -111,22 +111,50 @@ const reloadArticles = () => {
 		}
 	);
 }
+const wordContainsPartial = (partial) => {
+  return (element) => element.toLowerCase().includes(partial);
+}
 
-// TODO : Modify this function to show the keyword containging a part of the word inserted into the form (starting autocompletion at 3 letters)
-// TODO : We also show all the words from the same category than this word.
-// TODO : We show in first the keyword containing a part of the word inserted.
-// TODO : If a keyword is already in the liste of presents hashtags (checkbox list), we don't show it
 const showKeywordsList = (value) => {
 	// Starting at 3 letters inserted in the forme, we start to do something
 	if (value.length >= 3) {
 		const keyWordUl = document.querySelector(".inputKeywordsHandle ul");
 		resetKeywordsUl();
+		// find all keywords that include the value
+		let wordsContainingInput = 
+				allKeywords
+				.filter(
+					(x) => (
+						x.toLowerCase().includes(value)
+					));
+
+		let categoryWithKeywordContainingPartial = 
+				keywordsCategories
+				.find(
+					(x) => (
+						x.keywords
+					.find(wordContainsPartial(value))
+					)).keywords
 		
+		let allWordsToSuggest = new Set(
+				wordsContainingInput
+				.concat(
+					categoryWithKeywordContainingPartial
+				))
+
+		allWordsToSuggest = 
+			(Array
+			.from(allWordsToSuggest))
+			.filter((x) => (!currentKeywords.includes(x.toLowerCase())))
+
+		allWordsToSuggest.forEach(function(word) {
+			keyWordUl.innerHTML += `
+				<li onclick="addNewKeyword('${word}', '${cleanedKeyword(word)}')">${word}</li>
+			`
+		})
 		// This will allow you to add a new element in the list under the text input
 		// On clic, we add the keyword
-		// keyWordUl.innerHTML += `
-		//    <li onclick="addNewKeyword('${keyword}', '${cleanedKeyword(keyword)}')">${keyword}</li>
-		// `;
+/* 		; */
 	}
 }
 
