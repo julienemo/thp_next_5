@@ -18,4 +18,4 @@ Page behaviour
 
 3. Without refreshing the page, any submitted input will generate a similar pre-checked box. Videos having at least tag that matches at least one keyword will be shown. Keys words that shown case sensitive and with special chars, but they are registered in lower case without any special char. 'JAVa' and 'jàavA' are considered identical. When identical keywords are filled, the browser console will warn. The second keyword won't be added.
 
-4.
+4. when typing no less than 3 letters, input will suggest keywords. Any keyword containing the input, any keyword in the same category of the word containing the input, less than any keyword already with checkbox, will appear in the suggestion
