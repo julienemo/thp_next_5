@@ -17,6 +17,7 @@ const keywordsCategories = [
 ];
 
 const allKeywords = [];
+
 keywordsCategories.forEach((categorie) => {
    categorie.keywords.forEach((keyword) => {
        allKeywords.push(keyword);
@@ -83,15 +84,13 @@ const resetKeywordsUl = () => {
     document.querySelector(".inputKeywordsHandle ul").innerHTML = '';
 }
 
-// TODO : Modify this function to pass the keyword in lowercase and remove special characters
 const cleanedKeyword = (keyword) => {
-    let cleanedKeyword = keyword.toLowerCase();
-
+    let cleanedKeyword = keyword.toLowerCase().replace(/[^a-zA-Z ]/g, "");
     return cleanedKeyword;
 }
 
 // We reload the articles depends of the currentKeywords
-// TODO : Modify this function to return the articles containing at leat one of the selected keywords.
+// TODO : Modify this function to return the articles containing at least one of the selected keywords.
 const reloadArticles = () => {
     document.querySelector(".articlesList").innerHTML = ""
     let articlesToShow = data.articles;
