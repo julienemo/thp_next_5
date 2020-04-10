@@ -3,7 +3,7 @@
 2020/04/10 Julie Kwok
 
 * * *
-To test the project, go [here]()
+To test the project, go [here](https://julienemo.github.io/thp_next_5/)
 
 To manipulate code locally, please download the `project` folder
 
